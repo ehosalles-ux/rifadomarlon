@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa do Marlon - Gestão V15</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Luckiest+Guy&family=Poppins:wght@400;500;600;700&family=Azeret+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. PRINCÍPIOS DE DESIGN */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #1a100a;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+            gap: 40px;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #fdf5e6;
+            background-image: url('https://www.transparenttextures.com/patterns/papyrus.png');
+            border: 8px solid #5d2e17;
+            border-radius: 15px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 2. LAYOUT DO POSTER INSTAGRAM (VERTICAL 4:5) */
+        .insta-poster {
+            width: 440px;
+            height: 660px;
+            background: #fff3dd;
+            border: 10px solid #5d2e17;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 15px 20px;
+            background-image: url('https://www.transparenttextures.com/patterns/papyrus.png');
+        }
+
+        /* 3. SLIDE 1: RE-DESIGNED POSTER (Evolving from user feedback) */
+        .poster-header { text-align: center; margin-bottom: 5px; }
+        .poster-header h1 { 
+            font-family: 'Luckiest Guy', cursive; 
+            font-size: 34px; 
+            color: #5d2e17; 
+            text-shadow: 1px 1px 0px #fff;
+            line-height: 1;
+        }
+
+        .marlon-intro-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+            flex-grow: 0.1;
+        }
+
+        .marlon-polaroid {
+            background: white;
+            padding: 6px 6px 25px 6px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            border: 1px solid #eee;
+            width: 140px; /* Aumentado para dar destaque ao Marlon */
+            transform: rotate(-2deg);
+            flex-shrink: 0;
+        }
+        .marlon-polaroid img { width: 100%; height: 120px; object-fit: cover; }
+
+        .story-box {
+            font-size: 12.5px; /* Aumentado para preencher espaço */
+            line-height: 1.4;
+            color: #5d2e17;
+            font-weight: 600;
+            font-style: italic;
+            text-align: left;
+        }
+
+        .kit-title-row {
+            border-bottom: 2px solid #d2691e;
+            padding-bottom: 3px;
+            margin-top: 10px;
+        }
+        .kit-title-row h3 {
+            color: #9a4d1e;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 15px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .kit-grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .kit-entry {
+            background: #fff;
+            border-left: 5px solid #d2691e;
+            padding: 5px 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #333;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Reduzido para equilibrar o layout */
+        .kit-visual-area {
+            width: 100%;
+            height: 110px; 
+            background: #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        .kit-visual-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bottom-info-box {
+            border: 2px dashed #d2691e;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            display: flex;
+            padding: 12px 18px;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .prices-side { flex: 1; }
+        .price-line { 
+            font-family: 'Montserrat', sans-serif; 
+            font-weight: 900; 
+            font-size: 18px; 
+            margin-bottom: 2px;
+        }
+        .green-p { color: #2e7d32; }
+        .orange-p { color: #d84315; }
+
+        .date-side {
+            border-left: 2px solid #ccc;
+            padding-left: 15px;
+            text-align: center;
+            margin-left: 15px;
+        }
+        .date-side span { font-size: 9px; font-weight: 800; color: #d2691e; text-transform: uppercase; display: block; }
+        .date-side b { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 26px; color: #333; }
+
+        .poster-footer-v15 {
+            background: #3e2723;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 5px 5px;
+            margin: 15px -20px -20px -20px;
+        }
+
+        /* SLIDE 2: GRADE REVERTIDA PARA 15 COLUNAS */
+        .grid-header-insta { background: #d2691e; padding: 10px; color: white; text-align: center; border-radius: 4px 4px 0 0;}
+        .grid-header-insta h2 { font-family: 'Luckiest Guy'; font-size: 24px; }
+        .grid-main-body { flex: 1; display: flex; flex-direction: column; padding: 12px; gap: 10px; overflow: hidden;}
+        .legend-bar { display: flex; justify-content: center; gap: 12px; font-size: 10px; font-weight: 800; color: #5d2e17; }
+        .color-dot { width: 12px; height: 12px; border-radius: 2px; border: 1px solid #999; }
+        
+        #insta-grid-numbers { 
+            display: grid; 
+            grid-template-columns: repeat(15, minmax(0, 1fr)); /* Revertido para 15 colunas */
+            gap: 2px; 
+            background: rgba(0,0,0,0.05); 
+            padding: 6px; 
+            border-radius: 8px; 
+            flex: 1; 
+            overflow: hidden;
+        }
+
+        .num-cell { 
+            aspect-ratio: 1.1; 
+            background: white; 
+            border: 0.5px solid #ccc; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 7.5px; 
+            font-weight: 900; 
+            cursor: pointer; 
+            border-radius: 2px; 
+            line-height: 1;
+        }
+        .num-cell.reserved { background: #a67c52 !important; color: white !important; }
+        .num-cell.paid { background: #5d2e17 !important; color: white !important; }
+
+        /* SLIDE 3: GESTOR DE DADOS (INTACTO) */
+        .table-area { width: 100%; height: 100%; padding: 40px 60px; display: flex; flex-direction: column; }
+        .table-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; }
+        .table-container { flex: 1; overflow-y: auto; background: white; border-radius: 10px; border: 3px solid #5d2e17; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #5d2e17; color: white; position: sticky; top: 0; padding: 15px; text-align: left; font-size: 14px; z-index: 20; }
+        td { border-bottom: 1px solid #eee; padding: 10px 15px; font-size: 13px; }
+        .inp-cell { width: 100%; border: none; outline: none; background: transparent; font-weight: 600; font-family: inherit; }
+        .sel-status { width: 100%; padding: 6px; font-weight: 700; border-radius: 5px; border: 1px solid #ccc; }
+        .btn-save { padding: 12px 35px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; background: #22c55e; color: white; }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: POSTER AJUSTADO (SEM ESPAÇOS VAZIOS) -->
+<div class="slide-container" id="slide1">
+    <div class="insta-poster">
+        <div class="poster-header">
+            <h1>RIFA DO MARLON</h1>
+        </div>
+
+        <div class="marlon-intro-section">
+            <div class="marlon-polaroid">
+                <img src="Marlon.png" alt="Marlon">
+                <p style="font-family:'Luckiest Guy'; font-size:9px; color:#5d2e17; margin-top:2px; text-align:center;">Nosso Pequeno Guerreiro</p>
+            </div>
+            <div class="story-box">
+                O Marlon precisou passar por uma cirurgia de emergência e agora contamos com a sua ajuda para cobrir os custos. 
+                <br><br>
+                No Dia das Mães, sortearemos um Kit Churrasco Premium especial!
+            </div>
+        </div>
+
+        <div class="kit-title-row">
+            <h3>
+                <i class="fa-solid fa-paw"></i> 
+                <i class="fa-solid fa-paw"></i> 
+                <i class="fa-solid fa-paw"></i> 
+                CONTEÚDO DO KIT SUPER PREMIUM:
+            </h3>
+        </div>
+        
+        <div class="kit-grid-container">
+            <div class="kit-entry">1 BARRIL HEINEKEN 5L</div>
+            <div class="kit-entry">1 PICANHA PREMIUM</div>
+            <div class="kit-entry">1 PACOTE PÃO ALHO</div>
+            <div class="kit-entry">1 PACOTE CARVÃO 3KG</div>
+            <div class="kit-entry">1 LINGUIÇA PERDIGÃO</div>
+            <div class="kit-entry">1 COPO TÉRMICO PRETO</div>
+        </div>
+
+        <!-- Área central agora com a imagem kit.jpeg -->
+        <div class="kit-visual-area">
+            <img src="kit.png" alt="[Imagem do Kit de Churrasco]">
+        </div>
+
+        <div class="bottom-info-box">
+            <div class="prices-side">
+                <div class="price-line">1 NÚMERO: <span class="green-p">R$ 20</span></div>
+                <div class="price-line">3 NÚMEROS: <span class="orange-p">R$ 50</span></div>
+            </div>
+            <div class="date-side">
+                <span>SORTEIO DIA</span>
+                <b>08/05/26</b>
+            </div>
+        </div>
+
+        <div class="poster-footer-v15">
+            <div style="font-family:'Azeret Mono'; font-size:11px;">
+                <p style="font-size:7px; opacity:0.8; text-transform:uppercase;">WhatsApp para Reservas:</p>
+                <p style="font-weight:900; color: #ffca28;">(19) 98812-5822 ❤️🐾</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-left:60px; width:480px;">
+        <h2 style="font-family:'Luckiest Guy'; font-size:44px; color:#5d2e17;">Poster Slide 1</h2>
+        <p style="font-weight:600; color:#5d2e17; line-height:1.6; font-size:18px;">
+            Equilíbrio de espaço: <br><br>
+            - 📸 Marlon Polaroid ganhou mais destaque. <br>
+            - 🍖 Imagem do Kit reduzida para dar fluidez. <br>
+            - 🐾 Patinhas integradas ao título do Kit.
+        </p>
+    </div>
+</div>
+
+<!-- SLIDE 2: GRADE 300 (REVERTIDO PARA 15 COLUNAS) -->
+<div class="slide-container" id="slide2">
+    <div class="insta-poster">
+        <div class="grid-header-insta">
+            <h2>ESCOLHA SEU NÚMERO!</h2>
+        </div>
+        <div class="grid-main-body">
+            <div class="legend-bar">
+                <div style="display:flex; align-items:center; gap:4px;"><div class="color-dot" style="background:#fff"></div> Livre</div>
+                <div style="display:flex; align-items:center; gap:4px;"><div class="color-dot" style="background:#a67c52"></div> Reservado</div>
+                <div style="display:flex; align-items:center; gap:4px;"><div class="color-dot" style="background:#5d2e17"></div> Pago</div>
+            </div>
+            <div id="insta-grid-numbers" class="grid-300-scroll"></div>
+        </div>
+        <div style="background:#3e2723; padding:10px; color:white; text-align:center; border-radius:0 0 5px 5px;">
+            <p style="font-weight:900; font-size:15px;">WhatsApp: (19) 98812-5822</p>
+        </div>
+    </div>
+    <div style="margin-left:60px; width:480px;">
+        <h2 style="font-family:'Luckiest Guy'; font-size:44px; color:#5d2e17;">Grade 15 Colunas</h2>
+        <button class="btn-save" onclick="manualSync()"><i class="fa-solid fa-floppy-disk"></i> SALVAR DADOS</button>
+    </div>
+</div>
+
+<!-- SLIDE 3: GESTOR DE DADOS (INTACTO) -->
+<div class="slide-container" id="slide3">
+    <div class="table-area">
+        <div class="table-header">
+            <div>
+                <h2 style="font-family:'Luckiest Guy'; font-size:44px; color:#5d2e17;">GESTOR DE DADOS</h2>
+                <p style="font-weight:700; color:#d2691e;">PLANILHA DE COMPRADORES</p>
+            </div>
+            <div style="display:flex; gap:12px;">
+                <div style="background:#a67c52; color:white; padding:10px 20px; border-radius:8px; font-weight:700;" id="stats-res">RESERVADOS: 0</div>
+                <div style="background:#5d2e17; color:white; padding:10px 20px; border-radius:8px; font-weight:700;" id="stats-paid">PAGOS: 0</div>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th style="width: 80px;">Nº</th><th>NOME DO COMPRADOR</th><th style="width: 220px;">CELULAR</th><th style="width: 250px;">STATUS</th></tr>
+                </thead>
+                <tbody id="rifa-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    const gridEl = document.getElementById('insta-grid-numbers');
+    const tableEl = document.getElementById('rifa-table-body');
+    const raffleData = {};
+
+    function initApp() {
+        for (let i = 1; i <= 300; i++) {
+            const formattedNum = i.toString().padStart(3, '0');
+            raffleData[i] = { status: 0, name: '', phone: '' };
+
+            const cell = document.createElement('div');
+            cell.className = 'num-cell';
+            cell.id = `grid-num-${i}`;
+            cell.innerText = formattedNum;
+            cell.onclick = () => updateEntry(i, 'status', (raffleData[i].status + 1) % 3);
+            gridEl.appendChild(cell);
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td style="font-weight:900; color:#d2691e;">${formattedNum}</td><td><input type="text" class="inp-cell" id="inp-name-${i}" oninput="updateEntry(${i}, 'name', this.value)" placeholder="Nome..."></td><td><input type="text" class="inp-cell" id="inp-phone-${i}" oninput="updateEntry(${i}, 'phone', this.value)" placeholder="(00) 00000-0000"></td><td><select class="sel-status" id="sel-stat-${i}" onchange="updateEntry(${i}, 'status', parseInt(this.value))"><option value="0">Livre</option><option value="1">Reservado</option><option value="2">Pago</option></select></td>`;
+            tableEl.appendChild(tr);
+        }
+        loadSavedData();
+    }
+
+    function updateEntry(i, field, value) {
+        raffleData[i][field] = value;
+        if (field === 'status') {
+            const cell = document.getElementById(`grid-num-${i}`);
+            const select = document.getElementById(`sel-stat-${i}`);
+            cell.classList.remove('reserved', 'paid');
+            if (value === 1) cell.classList.add('reserved');
+            if (value === 2) cell.classList.add('paid');
+            select.value = value;
+        }
+        saveToStorage();
+    }
+
+    function saveToStorage() {
+        localStorage.setItem('marlon_rifa_v15_db', JSON.stringify(raffleData));
+        updateSummary();
+    }
+
+    function updateSummary() {
+        let r = 0, p = 0;
+        Object.values(raffleData).forEach(v => { if (v.status === 1) r++; if (v.status === 2) p++; });
+        document.getElementById('stats-res').innerText = `RESERVADOS: ${r}`;
+        document.getElementById('stats-paid').innerText = `PAGOS: ${p}`;
+    }
+
+    function loadSavedData() {
+        const raw = localStorage.getItem('marlon_rifa_v15_db');
+        if (raw) {
+            const saved = JSON.parse(raw);
+            Object.keys(saved).forEach(i => {
+                raffleData[i] = saved[i];
+                if(document.getElementById(`inp-name-${i}`)) document.getElementById(`inp-name-${i}`).value = raffleData[i].name;
+                if(document.getElementById(`inp-phone-${i}`)) document.getElementById(`inp-phone-${i}`).value = raffleData[i].phone;
+                updateEntry(i, 'status', raffleData[i].status);
+            });
+        }
+        updateSummary();
+    }
+
+    function manualSync() { saveToStorage(); alert('✅ Painel do Marlon salvo!'); }
+
+    window.onload = initApp;
+</script>
+
+</body>
+</html>
